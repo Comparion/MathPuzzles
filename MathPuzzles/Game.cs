@@ -36,7 +36,7 @@ namespace HiddenPairGame
             t.Start();
             label5.Text = ContentQuestion();
             LossField();
-            //button6.Visible = false;
+            button6.Visible = false;
         }
 
         private int LossSign2()
@@ -54,7 +54,7 @@ namespace HiddenPairGame
                 do
                 {
                     number3 = rnd.Next(1, 11) * level;
-                } while (b2.Text.Equals(number3));
+                } while (b2.Text.Equals((number3 + result).ToString()));
                 b3.Text = (result + number3).ToString();
             }
             else
@@ -62,7 +62,7 @@ namespace HiddenPairGame
                 do
                 {
                     number3 = rnd.Next(1, 11) * level;
-                } while (b2.Text.Equals(number3));
+                } while (b2.Text.Equals((number3 - result).ToString()));
                 b3.Text = Math.Abs((result - number3)).ToString();
             }
             sign2 = LossSign2();
@@ -71,7 +71,7 @@ namespace HiddenPairGame
                 do
                 {
                     number3 = rnd.Next(1, 11) * level;
-                } while (b2.Text.Equals(number3) || b3.Text.Equals(number3));
+                } while (b2.Text.Equals((number3 + result).ToString()) || b3.Text.Equals((number3 + result).ToString()));
                 b4.Text = (result + number3).ToString();
             }
             else
@@ -79,7 +79,7 @@ namespace HiddenPairGame
                 do
                 {
                     number3 = rnd.Next(1, 11) * level;
-                } while (b2.Text.Equals(number3) || b3.Text.Equals(number3));
+                } while (b2.Text.Equals((number3 - result).ToString()) || b3.Text.Equals((number3 - result).ToString()));
                 b4.Text = Math.Abs((result - number3)).ToString();
             }
             sign2 = LossSign2();
@@ -88,7 +88,7 @@ namespace HiddenPairGame
                 do
                 {
                     number3 = rnd.Next(1, 11) * level;
-                } while (b2.Text.Equals(number3) || b3.Text.Equals(number3) || b4.Text.Equals(number3));
+                } while (b2.Text.Equals((number3 + result).ToString()) || b3.Text.Equals((number3 + result).ToString()) || b4.Text.Equals((number3 + result).ToString()));
                 b5.Text = (result + number3).ToString();
             }
             else
@@ -96,7 +96,7 @@ namespace HiddenPairGame
                 do
                 {
                     number3 = rnd.Next(1, 11) * level;
-                } while (b2.Text.Equals(number3) || b3.Text.Equals(number3) || b4.Text.Equals(number3));
+                } while (b2.Text.Equals((number3 - result).ToString()) || b3.Text.Equals((number3 - result).ToString()) || b4.Text.Equals((number3 - result).ToString()));
                 b5.Text = Math.Abs((result - number3)).ToString();
             }
         }
@@ -174,11 +174,7 @@ namespace HiddenPairGame
             form1.Visible = true;
         }
 
-        //private void ButtonOperation(Button b1)
-        //{
-
-        //}
-
+       
         private void ButtonOperation(Button b)
         {
             if (totalTime < level * 2 && level > 5 && ss < 2)
@@ -247,12 +243,30 @@ namespace HiddenPairGame
                         name = name + " ";
                     }
                     streamW.WriteLine($"{point}{name}{level}");
+                    MessageBox.Show("Saving correct.");
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("The result could not be saved. " + ex.Message);
             }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            button2.Visible = true;
+            button3.Visible = true;
+            button4.Visible = true;
+            button5.Visible = true;
+            button6.Visible = false;
+            mm = 1;
+            level = 1;
+            player.Point = 0;
+            totalTime = 1;
+            label5.Text = ContentQuestion();
+            LossField();
+            t.Start();
+
         }
 
         //function show time in for mat 00:00 and incrementation seconds
@@ -280,12 +294,13 @@ namespace HiddenPairGame
             }
             if(ss2==0 && mm ==0)
             {
+                t.Stop();
                 MessageBox.Show("Time's up!");
                 button2.Visible = false;
                 button3.Visible = false;
                 button4.Visible = false;
                 button5.Visible = false;
-                //button6.Visible = true;
+                button6.Visible = true;
 
             }
 
