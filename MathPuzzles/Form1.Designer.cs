@@ -33,6 +33,11 @@
             this.buttonRanking = new System.Windows.Forms.Button();
             this.buttonExit = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.buttonBack = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonPlay
@@ -55,6 +60,7 @@
             this.buttonRanking.TabIndex = 1;
             this.buttonRanking.Text = "Ranking";
             this.buttonRanking.UseVisualStyleBackColor = true;
+            this.buttonRanking.Click += new System.EventHandler(this.buttonRanking_Click);
             // 
             // buttonExit
             // 
@@ -78,12 +84,63 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // buttonBack
+            // 
+            this.buttonBack.Font = new System.Drawing.Font("Poor Richard", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonBack.Location = new System.Drawing.Point(50, 401);
+            this.buttonBack.Name = "buttonBack";
+            this.buttonBack.Size = new System.Drawing.Size(300, 40);
+            this.buttonBack.TabIndex = 4;
+            this.buttonBack.Text = "Back";
+            this.buttonBack.UseVisualStyleBackColor = true;
+            this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(45, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(305, 389);
+            this.label1.TabIndex = 5;
+            this.label1.Text = resources.GetString("label1.Text");
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.Location = new System.Drawing.Point(47, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(303, 40);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Points          Name          Level";
+            // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label3.Location = new System.Drawing.Point(12, 49);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(29, 349);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "1.\r\n\r\n2.\r\n\r\n3.\r\n\r\n4.\r\n\r\n5.\r\n\r\n6.";
+            // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label4.Location = new System.Drawing.Point(49, 49);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(288, 349);
+            this.label4.TabIndex = 8;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
             this.ClientSize = new System.Drawing.Size(382, 453);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.buttonBack);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonExit);
             this.Controls.Add(this.buttonRanking);
@@ -102,6 +159,11 @@
         private System.Windows.Forms.Button buttonRanking;
         private System.Windows.Forms.Button buttonExit;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonBack;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }
 

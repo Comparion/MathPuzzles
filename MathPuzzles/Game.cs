@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,9 +13,10 @@ namespace HiddenPairGame
 {
     public partial class Game : Form
     {
-        int mm = 0;
         int ss = 1;
+        int ss2=0;
         int totalTime=1;
+        int mm = 1;
         int number1, number2, sign;
         int level = 1;
         int result;
@@ -34,6 +36,7 @@ namespace HiddenPairGame
             t.Start();
             label5.Text = ContentQuestion();
             LossField();
+            //button6.Visible = false;
         }
 
         private int LossSign2()
@@ -194,7 +197,6 @@ namespace HiddenPairGame
             }
             label2.Text = "Points: " + player.Point;
             label3.Text = "Level " + ++level;
-            mm = 0;
             ss = 1;
             label5.Text = ContentQuestion();
             LossField();
@@ -220,6 +222,39 @@ namespace HiddenPairGame
             ButtonOperation(button5);
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
+            string point, name;
+            try
+            {
+                using (StreamWriter streamW = new StreamWriter(("wynik.txt"), true))
+                {
+                    point = player.Point.ToString();
+                    name = player.nameUser;
+
+                    while(point.Length < 18)
+                    {
+                        point = point + " ";
+                    }
+                    while(name.Length < 18)
+                    {
+                        name = name + " ";
+                    }
+                    streamW.WriteLine($"{point}{name}{level}");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The result could not be saved. " + ex.Message);
+            }
+        }
+
         //function show time in for mat 00:00 and incrementation seconds
         private void t_Tick(object sender, EventArgs e)
         {
@@ -227,28 +262,31 @@ namespace HiddenPairGame
             ss++;
             string time = "";
 
-            if (mm < 10)
+            if (ss2 == 0)
             {
-                time += "0" + mm;
+                mm--;
+                ss2 = 60;
             }
-            else
-            {
-                time += mm;
-            }
+            time += "0" + mm;
             time += ":";
-
-            if (ss < 10)
+            ss2--;
+            if (ss2 < 10)
             {
-                time += "0" + ss;
-            }
-            else if(ss == 60)
-            {
-                ss = 0;
-                mm++;
+                time += "0" + ss2;
             }
             else
             {
-                time += ss;
+                time += ss2;
+            }
+            if(ss2==0 && mm ==0)
+            {
+                MessageBox.Show("Time's up!");
+                button2.Visible = false;
+                button3.Visible = false;
+                button4.Visible = false;
+                button5.Visible = false;
+                //button6.Visible = true;
+
             }
 
             label4.Text ="Time: " + time;
